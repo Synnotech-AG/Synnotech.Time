@@ -50,5 +50,73 @@ namespace Synnotech.Time.Tests
                 TimeSpan.FromDays(14),
                 TimeSpan.FromMilliseconds(750)
             };
+
+        [Fact]
+        public static void ProvideSeveralTimes()
+        {
+            var initialTime = new DateTime(2021, 5, 20, 10, 30, 0, DateTimeKind.Utc);
+            var secondTime = initialTime.AddHours(2);
+            var thirdTime = initialTime.AddHours(5);
+            var testClock = new TestClock(initialTime, secondTime, thirdTime);
+
+            var capturedTimes = new []
+            {
+                testClock.GetTime(),
+                testClock.GetTime(),
+                testClock.GetTime(),
+                testClock.GetTime(),
+                testClock.GetTime()
+            };
+
+            var expectedTimes = new[]
+            {
+                initialTime,
+                secondTime,
+                thirdTime,
+                thirdTime,
+                thirdTime
+            };
+            capturedTimes.Should().Equal(expectedTimes);
+        }
+
+        [Fact]
+        public static void TimesArrayNull()
+        {
+            // ReSharper disable once ObjectCreationAsStatement
+            Action act = () => new TestClock(null!);
+
+            act.Should().Throw<ArgumentNullException>()
+               .And.ParamName.Should().Be("times");
+        }
+
+        [Fact]
+        public static void TimesArrayEmpty()
+        {
+            // ReSharper disable once ObjectCreationAsStatement
+            Action act = () => new TestClock(Array.Empty<DateTime>());
+
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public static void MixedMode()
+        {
+            var initialTime = new DateTime(2021, 5, 30, 11, 15, 0, DateTimeKind.Utc);
+            var secondTime = initialTime.AddDays(1);
+            var testClock = new TestClock(initialTime, secondTime);
+
+            testClock.InitialTime.Should().Be(initialTime);
+
+            testClock.AdvanceTime(TimeSpan.FromHours(1));
+            var time1 = testClock.GetTime();
+            time1.Should().Be(initialTime.AddHours(1));
+
+            var time2 = testClock.GetTime();
+            time2.Should().Be(secondTime);
+
+            testClock.AdvanceTime(TimeSpan.FromHours(2));
+            var time3 = testClock.GetTime();
+            time3.Should().Be(secondTime.AddHours(2));
+        }
     }
 }

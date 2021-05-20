@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using Light.GuardClauses;
 
 namespace Synnotech.Time
 {
@@ -27,7 +28,7 @@ namespace Synnotech.Time
         protected DailyJob(DateTime startTime, IClock clock)
         {
             StartTime = startTime;
-            _clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            _clock = clock.MustNotBeNull(nameof(clock));
             _timer = new Timer { AutoReset = false };
             _timer.Elapsed += OnTimerTick;
         }
