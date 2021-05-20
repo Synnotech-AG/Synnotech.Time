@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Globalization;
 using FluentAssertions;
 using Xunit;
 
 namespace Synnotech.Time.Tests
 {
-    public static class CalculateIntervalForSameTimeNextDay
+    public static class CalculateIntervalForSameTimeNextDayTests
     {
+        static CalculateIntervalForSameTimeNextDayTests()
+        {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
+        }
+
         [Theory]
         [MemberData(nameof(CalculateTimeSpansData))]
         public static void CalculateTimeSpans(DateTime now, TimeSpan expected)
