@@ -25,6 +25,8 @@ Synntech.Time 1.0.0
 -------------------
 
 - initial release
+- use the IClock interface to abstract from DateTime.Now and DateTime.UtcNow. There are implementations for LocalClock, UtcClock, and TestClock (for Unit Tests).
+- use DailyJob for recurring functionality that should be executed daily on a specified time of day.
 - see all docs at https://github.com/Synnotech-AG/Synnotech.Time
         </PackageReleaseNotes>
 	</PropertyGroup>
