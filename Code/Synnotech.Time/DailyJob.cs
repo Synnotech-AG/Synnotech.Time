@@ -16,7 +16,7 @@ namespace Synnotech.Time
         /// Gets the target time of day when the task is executed.
         /// The date part of this value is ignored.
         /// </summary>
-        public readonly DateTime StartTime;
+        public DateTime StartTime { get; }
 
         /// <summary>
         /// Initializes a new instance of <see cref="DailyJob" />.
