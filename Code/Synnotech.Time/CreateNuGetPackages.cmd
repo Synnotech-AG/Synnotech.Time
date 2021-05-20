@@ -1,0 +1,1 @@
+dotnet pack ./Synnotech.Time.csproj --configuration Release /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=./bin/Synnotech.Time.snk /p:ContinuousIntegrationBuild=true
