@@ -6,7 +6,7 @@
         <Company>Synnotech AG</Company>
         <Copyright>Copyright © Synnotech AG 2021</Copyright>
 		<Description>Provides time-related abstractions and implementations for .NET.</Description>
-        <Version>1.0.0</Version>
+        <Version>1.1.0</Version>
 		<LangVersion>11.0</LangVersion>
 		<Nullable>enable</Nullable>
         <IsPackable>true</IsPackable>
@@ -23,12 +23,10 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>Time;Clock;Tests;Abstraction;UTC</PackageTags>
 		<PackageReleaseNotes>
-Synntech.Time 1.0.0
+Synnotech.Time 1.1.0
 -------------------
 
-- initial release
-- use the IClock interface to abstract from DateTime.Now and DateTime.UtcNow. There are implementations for LocalClock, UtcClock, and TestClock (for Unit Tests).
-- use DailyJob for recurring functionality that should be executed daily on a specified time of day.
+- Added CalculateIntervalUntil method to compute the interval for a future time of day
 - see all docs at https://github.com/Synnotech-AG/Synnotech.Time
         </PackageReleaseNotes>
 	</PropertyGroup>
