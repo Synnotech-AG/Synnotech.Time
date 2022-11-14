@@ -20,6 +20,22 @@ namespace Synnotech.Time
         }
 
         /// <summary>
+        /// Calculates the time span from <paramref name="now"/> until the day time is <paramref name="timeOfDay"/> again.
+        /// </summary>
+        /// <remarks>
+        /// Returns a time span of 24 hours if <paramref name="now"/> is exactly <paramref name="timeOfDay"/>.
+        /// </remarks>
+        /// <param name="now">The current time.</param>
+        /// <param name="timeOfDay">The target time of the day. The date part of this value will be ignored.</param>
+        public static TimeSpan CalculateIntervalForSameTime(this DateTime now, DateTime timeOfDay)
+        {
+            var timeOfToday = new DateTime(now.Year, now.Month, now.Day, timeOfDay.Hour, timeOfDay.Minute, timeOfDay.Second);
+            return timeOfToday > now
+                ? timeOfToday - now
+                : now.CalculateIntervalForSameTimeNextDay(timeOfDay);
+        }
+
+        /// <summary>
         /// Tries to convert the specified time span to a date time instance. The hour, minute, second, and millisecond values will
         /// be extracted from the time span. The date part will be set to 0001-01-01 (because it is normally ignored by code that
         /// only relies on the time of day). The conversion will fail when <see cref="TimeSpan.Hours" /> is greater than or equal to 24
