@@ -5,7 +5,7 @@
 [![Synnotech Logo](synnotech-large-logo.png)](https://www.synnotech.de/)
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://github.com/Synnotech-AG/Synnotech.Time/blob/main/LICENSE)
-[![NuGet](https://img.shields.io/badge/NuGet-1.0.0-blue.svg?style=for-the-badge)](https://www.nuget.org/packages/Synnotech.Time/)
+[![NuGet](https://img.shields.io/badge/NuGet-1.1.0-blue.svg?style=for-the-badge)](https://www.nuget.org/packages/Synnotech.Time/)
 
 # How to install
 
@@ -13,7 +13,7 @@ Synnotech.Time is compiled against [.NET Standard 2.0](https://docs.microsoft.co
 
 Synnotech.Time is available as a [NuGet package](https://www.nuget.org/packages/Synnotech.Time/) and can be installed via:
 
-- **Package Reference in csproj**: `<PackageReference Include="Synnotech.Time" Version="1.0.0" />`
+- **Package Reference in csproj**: `<PackageReference Include="Synnotech.Time" Version="1.1.0" />`
 - **dotnet CLI**: `dotnet add package Synnotech.Time`
 - **Visual Studio Package Manager Console**: `Install-Package Synnotech.Time`
 

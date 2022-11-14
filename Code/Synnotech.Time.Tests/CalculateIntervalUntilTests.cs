@@ -6,18 +6,22 @@ using Xunit;
 
 namespace Synnotech.Time.Tests;
 
-public static class CalculateIntervalForSameTimeNextDayTests
+public static class CalculateIntervalUntilTests
 {
+    private static readonly DateTime StartTime = new (1, 1, 1, 4, 15, 0, DateTimeKind.Local);
+        
     [Theory]
     [MemberData(nameof(NonSpecificData))]
-    public static void CalculateTimeOfNextDayInNonSpecificCultureScenario(DateTime now, TimeSpan expected) =>
+    public static void CalculateIntervalInNonSpecificCultureScenario(DateTime now, TimeSpan expected) =>
         CheckTimeSpan(now, expected);
 
     public static readonly TheoryData<DateTime, TimeSpan> NonSpecificData =
         new ()
         {
-            { new DateTime(2017, 10, 4, 12, 0, 0, DateTimeKind.Local), new TimeSpan(16, 15, 0) }, // Simple example
+            { new DateTime(2017, 10, 4, 4, 12, 0, DateTimeKind.Local), new TimeSpan(0, 3, 0) }, // Time is on same day
+            { new DateTime(2017, 10, 4, 4, 16, 0, DateTimeKind.Local), new TimeSpan(23, 59, 0) }, // Time is on next day
             { new DateTime(2016, 12, 31, 4, 15, 1, DateTimeKind.Local), new TimeSpan(23, 59, 59) }, // New Year's Eve
+            { new DateTime(2017, 10, 4, StartTime.Hour, StartTime.Minute, StartTime.Second, DateTimeKind.Local), new TimeSpan(24, 0, 0) }, // Exactly same time
         };
 
     [SkippableTheory]
@@ -37,8 +41,7 @@ public static class CalculateIntervalForSameTimeNextDayTests
 
     private static void CheckTimeSpan(DateTime now, TimeSpan expected)
     {
-        var startTime = new DateTime(1, 1, 1, 4, 15, 0, DateTimeKind.Local);
-        var actualTimeSpan = now.CalculateIntervalForSameTimeNextDay(startTime);
+        var actualTimeSpan = now.CalculateIntervalUntil(StartTime);
         actualTimeSpan.Should().Be(expected);
     }
 }
