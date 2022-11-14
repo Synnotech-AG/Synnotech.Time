@@ -7,7 +7,7 @@
         <Copyright>Copyright © Synnotech AG 2021</Copyright>
 		<Description>Provides time-related abstractions and implementations for .NET.</Description>
         <Version>1.0.0</Version>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>11.0</LangVersion>
 		<Nullable>enable</Nullable>
         <IsPackable>true</IsPackable>
 		<TreatWarningsAsErrors Condition="'$(Configuration)' == 'Release'">true</TreatWarningsAsErrors>
@@ -21,6 +21,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>Time;Clock;Tests;Abstraction;UTC</PackageTags>
 		<PackageReleaseNotes>
 Synntech.Time 1.0.0
 -------------------
@@ -33,7 +34,8 @@ Synntech.Time 1.0.0
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="Light.GuardClauses" Version="10.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
